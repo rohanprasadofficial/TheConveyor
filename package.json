@@ -1,0 +1,36 @@
+{
+  "name": "theconveyor",
+  "version": "1.0.0",
+  "description": "Conveyor is a Q/A inspired by StackOverflow and Quora",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohanpd4/TheConveyor.git"
+  },
+  "keywords": [
+    "theconveyor",
+    "stackoverflow-clone",
+    "quora-clone",
+    "rohanprasad",
+    "logarithm"
+  ],
+  "author": "Rohan Prasad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohanpd4/TheConveyor/issues"
+  },
+  "homepage": "https://github.com/rohanpd4/TheConveyor#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.16",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.9.0"
+  }
+}
