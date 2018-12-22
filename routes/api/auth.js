@@ -81,7 +81,6 @@ router.post("/login", (req, res, next) => {
                 jwt.sign(payload, key, { expiresIn: 60 * 60 }, (err, token) => {
                   if (err) throw err;
                   res.json({ sucess: true, token: "Bearer " + token });
-                  next();
                 });
               } else {
                 res.json({ message: "Password wrong" });
