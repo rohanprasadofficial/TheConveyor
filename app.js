@@ -2,9 +2,14 @@ var express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
+const passport = require("passport");
 
 const app = express();
 const port = 3500 || process.env.PORT;
+
+//Passport Middleware
+app.use(passport.initialize());
+require("./strategy/jsonwtStrategy")(passport);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");

@@ -4,6 +4,8 @@ const bodyparser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const passportjwt = require("passport-jwt");
+const jwt = require("jsonwebtoken");
+const key = require("../../setup/DBSetup").secret;
 
 router.use(bodyparser.urlencoded({ extended: false }));
 router.use(bodyparser.json());
@@ -52,7 +54,7 @@ router.post("/register", (req, res) => {
 
 //LOGIN ROUTE
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   Person.findOne({ email: req.body.email })
 
     .then(person => {
@@ -65,7 +67,22 @@ router.post("/login", (req, res) => {
               // res === true
 
               if (res1) {
-                res.json({ sucess: true, message: "Login Sucessfully" });
+                //Create Payload
+                //  res.json({ sucess: true, message: "Login Sucessfully" });
+
+                const payload = {
+                  name: person.name,
+                  id: person.id,
+                  email: person.email,
+                  password: person.password,
+                  profilepic: person.profilepic
+                };
+
+                jwt.sign(payload, key, { expiresIn: 60 * 60 }, (err, token) => {
+                  if (err) throw err;
+                  res.json({ sucess: true, token: "Bearer " + token });
+                  next();
+                });
               } else {
                 res.json({ message: "Password wrong" });
               }
@@ -80,5 +97,19 @@ router.post("/login", (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+//PROFILE ROUTE
+
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.send({
+      name: req.user.name,
+      email: req.user.email,
+      profilepic: req.user.profilepic
+    });
+  }
+);
 
 module.exports = router;
