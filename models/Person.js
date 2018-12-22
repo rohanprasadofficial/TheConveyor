@@ -11,7 +11,7 @@ var PersonSchema = new Schema({
     type: String,
     required: true
   },
-  username: {
+  password: {
     type: String,
     required: true
   },

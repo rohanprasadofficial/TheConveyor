@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 
 const app = express();
-const port = 8080 || process.env.PORT;
+const port = 3500 || process.env.PORT;
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
