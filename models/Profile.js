@@ -10,7 +10,7 @@ var Profile = new Schema({
 
   username: {
     type: String,
-    required: false
+    required: true
   },
 
   website: {
