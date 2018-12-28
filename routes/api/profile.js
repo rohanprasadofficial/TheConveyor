@@ -78,4 +78,19 @@ router.post(
   }
 );
 
+router.get("/:username", (req, res) => {
+  Profile.findOne({ username: req.params.username })
+    .populate("user", ["name", "profilepic"])
+    .then(person => {
+      if (person) {
+        res.json({ person });
+      } else {
+        res.status(404).json({ message: "Not profile exist" });
+      }
+    })
+    .catch(err => {
+      console.log("Username error");
+    });
+});
+
 module.exports = router;
