@@ -27,20 +27,20 @@ const QuestionSchema = new Schema({
     }
   ],
 
-  answer: [
+  answers: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: "myPerson"
-      }
-    },
-    {
+      },
       text: {
         type: String,
         required: true
-      }
-    },
-    {
+      },
+      name: {
+        type: String,
+        required: true
+      },
       date: {
         type: Date,
         default: Date.now
