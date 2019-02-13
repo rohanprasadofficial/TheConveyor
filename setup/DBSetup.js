@@ -1,4 +1,4 @@
 module.exports = {
-  DBURL: "mongodb://logarithm:test123@ds121652.mlab.com:21652/theconveyor",
+  DBURL: "DB_URL for  Database ",
   secret: "SecretToken"
 };
